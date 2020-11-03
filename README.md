@@ -3,6 +3,19 @@
 a [Sails v1](https://sailsjs.com) application
 
 
+### Instructions
+- Create Database with name 'simple_crud' in Postgres;
+- Install dependencies from project;
+- run project sails lift;
+
+### Endpoints
+
+- 'GET /api/v1/users' -> List All Users;
+- 'POST /api/v1/users' -> Create a User By ID;
+- 'PUT /api/v1/users/:id' -> Update a User By ID;
+- 'DELETE /api/v1/users/:id' -> Delete a User By ID;
+
+
 ### Links
 
 + [Sails framework documentation](https://sailsjs.com/get-started)
