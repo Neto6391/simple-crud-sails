@@ -5,8 +5,8 @@ a [Sails v1](https://sailsjs.com) application
 
 ### Instructions
 - Create Database with name 'simple_crud' in Postgres;
-- Install dependencies from project;
-- run project sails lift;
+- Install dependencies from project with npm 'npm install';
+- run project 'sails lift';
 
 ### Endpoints
 
