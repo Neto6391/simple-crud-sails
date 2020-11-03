@@ -5,6 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+
 module.exports = {
   
     get: async (req, res) => {
@@ -79,6 +80,67 @@ module.exports = {
             res.send({
                 'success': false,
                 'message': 'Is unable to create a User'
+            })
+        }
+    },
+
+    update: async (req, res) => {
+        try {
+            sails.log.debug(req.body, ` id `, req.param('id'));
+            const id = req.param('id');
+            const { name = null, email = null, password = null } = req.body;
+
+            if (!name  || name.length === 0) {
+                return res.send({
+                    'success': false,
+                    'message': 'Name is Required'
+                });
+            }
+
+            if (!email  || email.length === 0) {
+                return res.send({
+                    'success': false,
+                    'message': 'Email is Required'
+                });
+            }
+
+            if (!password  || password.length === 0) {
+                return res.send({
+                    'success': false,
+                    'message': 'Password is Required'
+                });
+            } else if (password.length < 6) {
+                return res.send({
+                    'success': false,
+                    'message': 'Password is need greather then 6 characters'
+                });
+            }
+
+            const isUserExists = await User.findOne({ where: { id } });
+            if (!isUserExists) {
+                res.send({
+                    'success': false,
+                    'message': 'User does not exists'
+                });
+            } else {
+                await User.update(id, {
+                    name,
+                    email,
+                    password
+                })
+
+                res.send({
+                    'success': true,
+                    'message': 'User is updated with Success'
+                })
+            }
+
+           
+        } catch(err) {
+            sails.log.debug(err);
+            res.send({
+                'success': false,
+                'message': 'Is unable to update a User'
             })
         }
     }
