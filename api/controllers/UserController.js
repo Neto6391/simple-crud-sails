@@ -143,6 +143,36 @@ module.exports = {
                 'message': 'Is unable to update a User'
             })
         }
+    },
+
+    delete: async (req, res) => {
+        try {
+            const id = req.param('id');
+
+            const isUserExists = await User.findOne({ where: { id } });
+
+            if (!isUserExists) {
+                res.send({
+                    'success': false,
+                    'message': 'User does not exists'
+                });
+            } else {
+                const user = await User.destroy(id);
+
+                res.send({
+                    'success': false,
+                    'message': 'Record of User is Deleted',
+                    'data': user
+                })
+            }
+        } catch(err) {
+            sails.log.debug(err);
+            res.send({
+                'success': false,
+                'message': 'Is unable to delete a User'
+            })
+        }
+        
     }
 
 };
