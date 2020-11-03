@@ -15,6 +15,16 @@ a [Sails v1](https://sailsjs.com) application
 - 'PUT /api/v1/users/:id' -> Update a User By ID;
 - 'DELETE /api/v1/users/:id' -> Delete a User By ID;
 
+### Data Body
+
+```
+  {
+    "name": "any_name",
+    "email":  "any_email@email",
+    "password": "any_password"
+  }
+```
+
 
 ### Links
 
